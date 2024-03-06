@@ -3,8 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_mvvm/res/colors.dart';
-import 'package:provider_mvvm/utils/routes/routes_name.dart';
 import 'package:provider_mvvm/utils/utils.dart';
+import 'package:provider_mvvm/utils/routes/routes_name.dart';
 import 'package:provider_mvvm/view_model/auth_view_model.dart';
 import 'package:provider_mvvm/res/components/round_button.dart';
 
@@ -65,9 +65,11 @@ class _LoginViewState extends State<LoginView> {
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  hintText: 'Email',
+                    hintText: 'Email',
                     labelText: 'Enter Email',
-                  prefixIcon: Icon(Icons.email_outlined)
+                    prefixIcon: Icon(Icons.email_outlined),
+                  border: OutlineInputBorder(),
+                  focusColor: Colors.deepPurple
                 ),
                 onFieldSubmitted: (value){
                   Utils.fieldFocusChange(context, emailFocusNode, passwordFocusNode);
@@ -83,16 +85,18 @@ class _LoginViewState extends State<LoginView> {
                     obscuringCharacter: "*",
                     decoration: InputDecoration(
                       hintText: "Password",
+                      labelText: 'Enter Password',
+                      border: OutlineInputBorder(),
+                      focusColor: Colors.deepPurple,
                       prefixIcon: Icon(Icons.lock_open_outlined),
                       suffixIcon: GestureDetector(
                           onTap: () {
                             obSecurePassword.value = !obSecurePassword.value;
                           },
-                          child: Icon(
-                              obSecurePassword.value
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
-                              color: AppColors.colorDeepPurple)),
+                          child: Icon(obSecurePassword.value ?
+                              Icons.visibility_off_outlined : Icons.visibility_outlined,
+                              color: AppColors.colorDeepPurple),
+                      ),
                     ),
                   );
                 },
@@ -143,9 +147,8 @@ class _LoginViewState extends State<LoginView> {
                         fontWeight: FontWeight.bold,
                         color: AppColors.colorDeepPurple,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.pushNamed(context, RoutesName.signUpPage);
+                      recognizer: TapGestureRecognizer()..onTap = () {
+                        Navigator.pushNamed(context, RoutesName.signUpPage);
                         },
                     ),
                   ],

@@ -6,6 +6,10 @@ import 'package:provider_mvvm/data/models/movies_list_model.dart';
 
 class HomeViewViewModel with ChangeNotifier {
 
+  List<HomeViewViewModel> _items = [];
+
+  List<HomeViewViewModel> get items => _items;
+
   final _myRepo = HomeRepository();
 
   ApiResponse<MoviesListModel> moviesList = ApiResponse.loading();

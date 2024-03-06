@@ -1,3 +1,4 @@
+
 class MoviesListModel {
   List<Movies>? movies;
 
